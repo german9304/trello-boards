@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 
 const OpenFormStyles = styled.section`
-border: solid 1px rgba(0.1, 0.1, 0.1, 0.4);
+// border: solid 1px rgba(0.1, 0.1, 0.1, 0.4);
 cursor: pointer;
-padding: 5px;
   display: flex;
   align-items: center;
 //   > section {
