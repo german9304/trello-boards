@@ -5,7 +5,7 @@ import './styles.css';
 import AddCardForm from './components/addcardform';
 import AddListForm from './components/addlistform';
 import EditListTitle from './components/editlistform';
-import EditCardTitle from './components/editcardtitle';
+// import EditCardTitle from './components/editcardtitle';
 import BoardsStyles from './components/styles/BoardsStyles';
 import BoardStyles from './components/styles/BoardStyles';
 
@@ -22,7 +22,7 @@ function Boards() {
                 return (
                   <section className="card" key={card.id}>
                     <h1>{card.cardName}</h1>
-                    <EditCardTitle />
+                    {/* <EditCardTitle /> */}
                   </section>
                 );
               })}

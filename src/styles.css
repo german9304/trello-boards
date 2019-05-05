@@ -17,6 +17,14 @@ body {
 input {
   width: 100%;
   border: none;
+  padding: 5px 0 5px 3px;
+}
+textarea {
+  outline: none;
+  width: 100%;
+  border: none;
+  resize: none;
+  padding: 5px 0 5px 3px;
 }
 li {
   list-style: none;
