@@ -5,6 +5,7 @@ const AddListFormStyles = styled.section`
   padding: 5px;
   width: 230px;
   input {
+    outline: none;
     border-radius: 3px;
     padding: 5px 0 5px 3px;
     border: solid 2px #001f3f;
