@@ -5,6 +5,7 @@ import './styles.css';
 import AddCardForm from './components/addcardform';
 import AddListForm from './components/addlistform';
 import OpenListForm from './components/openlistform';
+import OpenCardForm from './components/opencardform';
 import EditListTitle from './components/editlistform';
 // import EditCardTitle from './components/editcardtitle';
 import BoardsStyles from './components/styles/BoardsStyles';
@@ -28,13 +29,13 @@ function Boards() {
                 );
               })}
             </section>
-            {/* <OpenForm title="Add a card" /> */}
-            {/* <AddCardForm /> */}
+            <OpenCardForm title="Add a card" />
+            <AddCardForm />
           </BoardStyles>
         );
       })}
       <OpenListForm title="Add a list" />
-      {/* <AddListForm /> */}
+      <AddListForm />
     </BoardsStyles>
   );
 }
