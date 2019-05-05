@@ -31,9 +31,7 @@ function Boards() {
           </BoardStyles>
         );
       })}
-      <section className="board board-form">
-        <AddListForm />
-      </section>
+      <AddListForm />
     </BoardsStyles>
   );
 }

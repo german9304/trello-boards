@@ -1,13 +1,14 @@
 import React from 'react';
 import Button from './button';
 import ClearIcon from './clearicon';
+import AddBtnStyles from './styles/addBtnStyles';
 
 function AddCardBtnArea(props) {
   return (
-    <section id="add_cardbtn">
+    <AddBtnStyles id="add_cardbtn">
       <Button>{'Add Card'}</Button>
       <ClearIcon />
-    </section>
+    </AddBtnStyles>
   );
 }
 
