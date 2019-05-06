@@ -12,24 +12,20 @@ import CardStyles from './components/styles/cardStyles';
 import BoardsStyles from './components/styles/BoardsStyles';
 import BoardStyles from './components/styles/BoardStyles';
 
-const showCardState = {
-  id: 0,
-  show: false,
-};
+function ShowAreas({ state, board, Open, Add }) {
+  const [showArea, setArea] = useState(state);
+  function handleClick() {
+    setArea(prev => !prev);
+  }
+  return (
+    <>
+      <Open title="Add a card" hide={showArea} onClick={handleClick} />
+      <Add show={showArea} onClick={handleClick} />
+    </>
+  );
+}
+
 function Boards() {
-  const [showListForm, setShowListForm] = useState(false);
-  const [showCardForm, setShowCardForm] = useState(showCardState);
-
-  function handleListFormClick() {
-    setShowListForm(prev => !prev);
-  }
-
-  function handleCardFormClick(id) {
-    setShowCardForm(prev => {
-      return { id, show: !prev.show };
-    });
-  }
-
   return (
     <BoardsStyles id="boards">
       {boards.map(board => {
@@ -49,26 +45,21 @@ function Boards() {
                 })}
               </section>
             </section>
-            <OpenCardForm
-              title="Add a card"
+            <ShowAreas
+              state={false}
               board={board}
-              hide={showCardForm}
-              onClick={handleCardFormClick}
-            />
-            <AddCardForm
-              board={board}
-              show={showCardForm}
-              onClick={handleCardFormClick}
+              Open={OpenCardForm}
+              Add={AddCardForm}
             />
           </BoardStyles>
         );
       })}
-      <OpenListForm
-        title="Add a list"
-        hide={showListForm}
-        onClick={handleListFormClick}
+      <ShowAreas
+        state={false}
+        board={{}}
+        Open={OpenListForm}
+        Add={AddListForm}
       />
-      <AddListForm show={showListForm} onClick={handleListFormClick} />
     </BoardsStyles>
   );
 }
