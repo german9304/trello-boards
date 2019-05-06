@@ -11,6 +11,10 @@ const BoardStyles = styled.section`
   }
   .boards-content {
     padding: 15px 10px 5px 10px;
+    .board-list_title {
+      // border: solid 1px black;
+      padding: var(--padding-titles);
+    }
   }
 `;
 

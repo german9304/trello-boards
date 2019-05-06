@@ -4,6 +4,7 @@
 :root {
   --side-margin: 10px;
   --card-margin: 15px;
+  --padding-titles: 0 6px 0 6px;
 }
 
 body {
