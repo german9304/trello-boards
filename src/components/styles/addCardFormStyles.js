@@ -9,7 +9,7 @@ const AddCardFormStyles = styled.section`
   padding: 8px 6px 5px 8px;
   .form {
     border: solid 1px rgba(0.1, 0.1, 0.1, 0.1);
-    box-shadow 0 0 2px 1px rgba(0.1, 0.1, 0.1, 0.3);
+    box-shadow 0 0 1px 2px rgba(0.1, 0.1, 0.1, 0.3);
     margin: 0 0 5px 0;
   }
 `;
