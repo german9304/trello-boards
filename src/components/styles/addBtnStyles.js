@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 const AddBtnStyles = styled.section`
-  //   border: solid 1px black;
-  margin: 0;
+  // border: solid 1px black;
+  margin: 8px 0 0 0;
   display: flex;
   //   > section {
   //     border: solid 1px red;
@@ -17,11 +17,16 @@ const AddBtnStyles = styled.section`
     align-items: center;
   }
   .material-icons {
-    color: rgba(0.1, 0.1, 0.1, 1);
-    font-size: 1rem;
+    color: rgba(0.1, 0.1, 0.1, 0.7);
+    font-size: 1.3rem;
+    cursor: pointer;
+    // border: solid 1px red;
+  }
+  .material-icons:hover {
+    color: #111111;
   }
   button {
-    pointer: cursor;
+    cursor: pointer;
     font-size: 0.8rem;
     border: none;
     outline: none;
@@ -31,7 +36,7 @@ const AddBtnStyles = styled.section`
     font-family: 'Montserrat', sans-serif;
   }
   .areabtn {
-    margin: 0 5px 0 0;
+    margin: 0 13px 0 0;
   }
 `;
 

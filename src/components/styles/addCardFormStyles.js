@@ -12,6 +12,9 @@ const AddCardFormStyles = styled.section`
     box-shadow 0 0 1px 2px rgba(0.1, 0.1, 0.1, 0.3);
     margin: 0 0 5px 0;
   }
+  .show {
+    display: none;
+  }
 `;
 
 export default AddCardFormStyles;

@@ -4,7 +4,10 @@ import OpenListFormStyles from './styles/openListFormStyles';
 
 function OpenFormList(props) {
   return (
-    <OpenListFormStyles>
+    <OpenListFormStyles
+      className={props.hide ? 'hide' : ''}
+      onClick={props.onClick}
+    >
       <OpenForm title={props.title} />
     </OpenListFormStyles>
   );

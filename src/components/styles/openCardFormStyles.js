@@ -7,6 +7,9 @@ const OpenCardFormStyles = styled.section`
   :hover {
     background-color: rgba(0.1, 0.1, 0.1, 0.2);
   }
+  .hide {
+    display: none;
+  }
 `;
 
 export default OpenCardFormStyles;

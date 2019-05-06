@@ -7,7 +7,7 @@ function AddListBtnArea(props) {
   return (
     <AddBtnStyles id="add_Listbtn">
       <Button>{'Add List'}</Button>
-      <Icon classIcon="clear-icon" iconName="clear" />
+      <Icon classIcon="clear-icon" iconName="clear" onClick={props.onClick} />
     </AddBtnStyles>
   );
 }

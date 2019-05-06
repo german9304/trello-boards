@@ -3,14 +3,16 @@ import Form from './form';
 import AddListBtnArea from './addlistbtnarea';
 import AddListFormStyles from './styles/addListFormStyles';
 
-function AddListForm() {
+function AddListForm(props) {
   return (
-    <AddListFormStyles className="board board-form">
+    <AddListFormStyles
+      className={`board board-form ${props.show ? '' : 'hide'}`}
+    >
       <Form>
         <section className="form form-group">
           <input type="text" placeholder="Enter title for List" />
         </section>
-        <AddListBtnArea />
+        <AddListBtnArea onClick={props.onClick} />
       </Form>
     </AddListFormStyles>
   );

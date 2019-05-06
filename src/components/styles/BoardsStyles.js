@@ -16,6 +16,9 @@ const BoardsStyles = styled.section`
   > .board:nth-child(even) {
     margin: 0 10px 0 0;
   }
+  .hide {
+    display: none;
+  }
 `;
 
 export default BoardsStyles;
