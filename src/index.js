@@ -12,10 +12,23 @@ import CardStyles from './components/styles/cardStyles';
 import BoardsStyles from './components/styles/BoardsStyles';
 import BoardStyles from './components/styles/BoardStyles';
 
+const showCardState = {
+  id: 0,
+  show: false,
+};
 function Boards() {
   const [showListForm, setShowListForm] = useState(false);
-  function handleClick() {
+  const [showCardForm, setShowCardForm] = useState(showCardState);
+
+  function handleListFormClick() {
     setShowListForm(prev => !prev);
+  }
+
+  function handleCardFormClick(id) {
+    console.log('clicked card', id);
+    setShowCardForm(prev => {
+      return { id, show: !prev.show };
+    });
   }
 
   return (
@@ -37,17 +50,25 @@ function Boards() {
                 })}
               </section>
             </section>
-            <OpenCardForm title="Add a card" />
-            <AddCardForm />
+            <OpenCardForm
+              title="Add a card"
+              board={board}
+              hide={showCardForm.show}
+              onClick={handleCardFormClick}
+            />
+            <AddCardForm
+              show={showCardForm.show}
+              onClick={handleCardFormClick}
+            />
           </BoardStyles>
         );
       })}
       <OpenListForm
         title="Add a list"
         hide={showListForm}
-        onClick={handleClick}
+        onClick={handleListFormClick}
       />
-      <AddListForm show={showListForm} onClick={handleClick} />
+      <AddListForm show={showListForm} onClick={handleListFormClick} />
     </BoardsStyles>
   );
 }

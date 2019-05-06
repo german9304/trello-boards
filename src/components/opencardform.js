@@ -4,7 +4,10 @@ import OpenCardFormStyles from './styles/openCardFormStyles';
 
 function OpenCardForm(props) {
   return (
-    <OpenCardFormStyles>
+    <OpenCardFormStyles
+      className={props.hide ? 'hide' : ''}
+      onClick={() => props.onClick(props.board.id)}
+    >
       <OpenForm title={props.title} />
     </OpenCardFormStyles>
   );

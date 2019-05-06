@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 const OpenFormStyles = styled.section`
 // border: solid 1px rgba(0.1, 0.1, 0.1, 0.4);
-cursor: pointer;
   display: flex;
   align-items: center;
 //   > section {
