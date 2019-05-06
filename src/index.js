@@ -25,7 +25,6 @@ function Boards() {
   }
 
   function handleCardFormClick(id) {
-    console.log('clicked card', id);
     setShowCardForm(prev => {
       return { id, show: !prev.show };
     });

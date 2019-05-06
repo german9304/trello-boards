@@ -4,9 +4,7 @@ import AddCardBtnArea from './addcardbtnarea';
 import AddCardFormStyles from './styles/addCardFormStyles';
 
 function AddCardForm(props) {
-  // console.log(props.show);
   const { show, board } = props;
-  console.log(board);
   return (
     <AddCardFormStyles
       className={show.show && board.id === show.id ? '' : 'hide'}
