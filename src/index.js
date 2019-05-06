@@ -53,11 +53,12 @@ function Boards() {
             <OpenCardForm
               title="Add a card"
               board={board}
-              hide={showCardForm.show}
+              hide={showCardForm}
               onClick={handleCardFormClick}
             />
             <AddCardForm
-              show={showCardForm.show}
+              board={board}
+              show={showCardForm}
               onClick={handleCardFormClick}
             />
           </BoardStyles>

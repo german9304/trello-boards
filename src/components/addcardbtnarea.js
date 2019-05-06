@@ -7,7 +7,7 @@ function AddCardBtnArea(props) {
   return (
     <AddBtnStyles id="add_cardbtn">
       <Button>{'Add Card'}</Button>
-      <Icon classIcon="clear-icon" iconName="clear" />
+      <Icon classIcon="clear-icon" iconName="clear" onClick={props.onClick} />
     </AddBtnStyles>
   );
 }
