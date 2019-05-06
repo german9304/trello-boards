@@ -20,7 +20,7 @@ function Boards() {
           <BoardStyles className="board boards-list" key={board.id}>
             <section className="boards-content">
               <h1 className="board-list_title"> {board.title}</h1>
-              {/* <EditListTitle /> */}
+              <EditListTitle />
               <section className="board-cards">
                 {board.cards.map(card => {
                   return (
@@ -33,12 +33,12 @@ function Boards() {
               </section>
             </section>
             <OpenCardForm title="Add a card" />
-            {/* <AddCardForm /> */}
+            <AddCardForm />
           </BoardStyles>
         );
       })}
       <OpenListForm title="Add a list" />
-      {/* <AddListForm /> */}
+      <AddListForm />
     </BoardsStyles>
   );
 }
