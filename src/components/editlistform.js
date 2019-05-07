@@ -1,13 +1,16 @@
 import React from 'react';
 import Form from './form';
+import EditListTtitleStyles from './styles/EditListTitleStyles';
 
-function EditListTitle() {
+function EditListTitle(props) {
   return (
-    <Form>
-      <section className="form form-group">
-        <input type="text" value="" />
-      </section>
-    </Form>
+    <EditListTtitleStyles className={props.show ? '' : 'hide'}>
+      <Form>
+        <section className="form form-group">
+          <input type="text" value={props.value} />
+        </section>
+      </Form>
+    </EditListTtitleStyles>
   );
 }
 

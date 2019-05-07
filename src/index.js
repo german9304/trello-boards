@@ -7,20 +7,60 @@ import AddListForm from './components/addlistform';
 import OpenListForm from './components/openlistform';
 import OpenCardForm from './components/opencardform';
 import CardStyles from './components/styles/cardStyles';
-// import EditListTitle from './components/editlistform';
+import EditListTitle from './components/editlistform';
 // import EditCardTitle from './components/editcardtitle';
 import BoardsStyles from './components/styles/BoardsStyles';
 import BoardStyles from './components/styles/BoardStyles';
 
-function ShowAreas({ state, board, Open, Add }) {
-  const [showArea, setArea] = useState(state);
-  function handleClick() {
+function Header({ hide, className, title, onClick }) {
+  const cond = hide ? `${className} hide` : `${className}`;
+  console.log(cond);
+  return (
+    <header className={cond} onClick={onClick}>
+      <h1>{title}</h1>
+    </header>
+  );
+}
+
+function useShow(initVal) {
+  const [show, setArea] = useState(initVal);
+  function handleShow() {
     setArea(prev => !prev);
+  }
+  return {
+    show,
+    handleShow,
+  };
+}
+
+function ShowFormAreas({ board, title, Open, Add }) {
+  const { show, handleShow } = useShow(false);
+  function handleClick() {
+    handleShow();
   }
   return (
     <>
-      <Open title="Add a card" hide={showArea} onClick={handleClick} />
-      <Add show={showArea} onClick={handleClick} />
+      <Open title={title} hide={show} onClick={handleClick} />
+      <Add show={show} onClick={handleClick} />
+    </>
+  );
+}
+
+function ShowEditAreas({ title, className, Area, EditArea }) {
+  const { show, handleShow } = useShow(false);
+  function handleClick() {
+    handleShow();
+  }
+
+  return (
+    <>
+      <Area
+        className={className}
+        hide={show}
+        title={title}
+        onClick={handleClick}
+      />
+      <EditArea show={show} value={title} />
     </>
   );
 }
@@ -32,31 +72,38 @@ function Boards() {
         return (
           <BoardStyles className="board boards-list" key={board.id}>
             <section className="boards-content">
-              <h1 className="board-list_title"> {board.title}</h1>
-              {/* <EditListTitle /> */}
+              {/* <Header className="board-list_title" title={board.title} />
+              <EditListTitle value={board.title} /> */}
+              <ShowEditAreas
+                className="board-list_title"
+                Area={Header}
+                title={board.title}
+                EditArea={EditListTitle}
+              />
+              {/* <ShowAreas /> */}
               <section className="board-cards">
                 {board.cards.map(card => {
                   return (
                     <CardStyles className="card" key={card.id}>
-                      <h1>{card.cardName}</h1>
+                      <Header className="cards_title" title={card.cardName} />
                       {/* <EditCardTitle /> */}
                     </CardStyles>
                   );
                 })}
               </section>
             </section>
-            <ShowAreas
-              state={false}
+            <ShowFormAreas
               board={board}
+              title="Add a Card"
               Open={OpenCardForm}
               Add={AddCardForm}
             />
           </BoardStyles>
         );
       })}
-      <ShowAreas
-        state={false}
+      <ShowFormAreas
         board={{}}
+        title="Add a List"
         Open={OpenListForm}
         Add={AddListForm}
       />
