@@ -1,5 +1,6 @@
 import React, { useState, useReducer } from 'react';
 import boards from './data';
+import uuid from 'uuid/v1';
 import './styles.css';
 import AddCardForm from './components/addcardform';
 import AddListForm from './components/addlistform';
@@ -30,7 +31,16 @@ function Header({ hide, className, title, onClick }) {
 function Boards() {
   const [state, dispatch] = useReducer(listReducer, initState);
 
-  const addList = value => dispatch({ type: 'ADD LIST', payload: value });
+  function createList(title) {
+    return {
+      id: uuid(),
+      title,
+      cards: [],
+    };
+  }
+
+  const addList = value =>
+    dispatch({ type: 'ADD LIST', payload: createList(value) });
   return (
     <BoardsStyles id="boards">
       {state.boards.map(board => {
@@ -68,6 +78,7 @@ function Boards() {
         title="Add a List"
         Open={OpenListForm}
         Add={AddListForm}
+        dispatch={addList}
       />
     </BoardsStyles>
   );

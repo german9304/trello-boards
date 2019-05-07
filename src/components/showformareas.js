@@ -10,7 +10,7 @@ function ShowFormAreas({ board, dispatch, title, Open, Add }) {
   }
   function handleSubmit(e) {
     e.preventDefault();
-    // dispatch();
+    dispatch(value);
     console.log(value);
   }
   return (

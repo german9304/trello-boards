@@ -2,7 +2,7 @@ function listReducer(state, action) {
   switch (action.type) {
     case 'ADD LIST':
       const { payload } = action;
-      return [...state, payload];
+      return { boards: [...state.boards, payload] };
     default:
       return state;
   }
