@@ -72,15 +72,12 @@ function Boards() {
         return (
           <BoardStyles className="board boards-list" key={board.id}>
             <section className="boards-content">
-              {/* <Header className="board-list_title" title={board.title} />
-              <EditListTitle value={board.title} /> */}
               <ShowEditAreas
                 className="board-list_title"
                 Area={Header}
                 title={board.title}
                 EditArea={EditListTitle}
               />
-              {/* <ShowAreas /> */}
               <section className="board-cards">
                 {board.cards.map(card => {
                   return (
