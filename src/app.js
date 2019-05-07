@@ -12,6 +12,11 @@ import ShowFormAreas from './components/showformareas';
 // import EditCardTitle from './components/editcardtitle';
 import BoardsStyles from './components/styles/BoardsStyles';
 import BoardStyles from './components/styles/BoardStyles';
+import listReducer from './reducers/listreducer';
+
+const initState = {
+  boards,
+};
 
 function Header({ hide, className, title, onClick }) {
   const cond = hide ? `${className} hide` : `${className}`;
@@ -23,9 +28,12 @@ function Header({ hide, className, title, onClick }) {
 }
 
 function Boards() {
+  const [state, dispatch] = useReducer(listReducer, initState);
+
+  const addList = value => dispatch({ type: 'ADD LIST', payload: value });
   return (
     <BoardsStyles id="boards">
-      {boards.map(board => {
+      {state.boards.map(board => {
         return (
           <BoardStyles className="board boards-list" key={board.id}>
             <section className="boards-content">

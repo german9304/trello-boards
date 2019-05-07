@@ -2,7 +2,7 @@ import React from 'react';
 import useShow from '../customhooks/useshow';
 import useInput from '../customhooks/useinput';
 
-function ShowEditAreas({ title, className, Area, EditArea }) {
+function ShowEditAreas({ title, dispatch, className, Area, EditArea }) {
   const { show, handleShow } = useShow(false);
   const { value, handleValue } = useInput(title);
   function handleClick() {
@@ -10,7 +10,8 @@ function ShowEditAreas({ title, className, Area, EditArea }) {
   }
   function handleSubmit(e) {
     e.preventDefault();
-    console.log('submitted');
+    console.log(value);
+    // dispatch();
   }
 
   return (

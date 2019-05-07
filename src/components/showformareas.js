@@ -1,19 +1,28 @@
 import React from 'react';
 import useShow from '../customhooks/useshow';
+import useInput from '../customhooks/useinput';
 
-function ShowFormAreas({ board, title, Open, Add }) {
+function ShowFormAreas({ board, dispatch, title, Open, Add }) {
   const { show, handleShow } = useShow(false);
+  const { value, handleValue } = useInput('');
   function handleClick() {
     handleShow();
   }
   function handleSubmit(e) {
     e.preventDefault();
-    console.log('submitted');
+    // dispatch();
+    console.log(value);
   }
   return (
     <>
       <Open title={title} hide={show} onClick={handleClick} />
-      <Add show={show} onSubmit={handleSubmit} onClick={handleClick} />
+      <Add
+        show={show}
+        value={value}
+        handleValue={handleValue}
+        onSubmit={handleSubmit}
+        onClick={handleClick}
+      />
     </>
   );
 }

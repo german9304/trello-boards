@@ -10,7 +10,12 @@ function AddListForm(props) {
     >
       <Form onSubmit={props.onSubmit}>
         <section className="form form-group">
-          <input type="text" placeholder="Enter title for List" />
+          <input
+            type="text"
+            value={props.value}
+            onChange={props.handleValue}
+            placeholder="Enter title for List"
+          />
         </section>
         <AddListBtnArea onClick={props.onClick} />
       </Form>
