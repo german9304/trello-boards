@@ -8,6 +8,8 @@ import OpenListForm from './components/openlistform';
 import OpenCardForm from './components/opencardform';
 import CardStyles from './components/styles/cardStyles';
 import EditListTitle from './components/editlistform';
+import useInput from './customhooks/useinput';
+import useShow from './customhooks/useshow';
 // import EditCardTitle from './components/editcardtitle';
 import BoardsStyles from './components/styles/BoardsStyles';
 import BoardStyles from './components/styles/BoardStyles';
@@ -19,28 +21,6 @@ function Header({ hide, className, title, onClick }) {
       <h1>{title}</h1>
     </header>
   );
-}
-
-function useShow(initVal) {
-  const [show, setArea] = useState(initVal);
-  function handleShow() {
-    setArea(prev => !prev);
-  }
-  return {
-    show,
-    handleShow,
-  };
-}
-
-function useInput(initValue) {
-  const [value, setValue] = useState(initValue);
-  function handleValue(e) {
-    setValue(e.target.value);
-  }
-  return {
-    value,
-    handleValue,
-  };
 }
 
 function ShowFormAreas({ board, title, Open, Add }) {
