@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useReducer } from 'react';
 import boards from './data';
 import './styles.css';
 import AddCardForm from './components/addcardform';
@@ -7,8 +7,8 @@ import OpenListForm from './components/openlistform';
 import OpenCardForm from './components/opencardform';
 import CardStyles from './components/styles/cardStyles';
 import EditListTitle from './components/editlistform';
-import useInput from './customhooks/useinput';
-import useShow from './customhooks/useshow';
+import ShowEditAreas from './components/showeditareas';
+import ShowFormAreas from './components/showformareas';
 // import EditCardTitle from './components/editcardtitle';
 import BoardsStyles from './components/styles/BoardsStyles';
 import BoardStyles from './components/styles/BoardStyles';
@@ -19,52 +19,6 @@ function Header({ hide, className, title, onClick }) {
     <header className={cond} onClick={onClick}>
       <h1>{title}</h1>
     </header>
-  );
-}
-
-function ShowFormAreas({ board, title, Open, Add }) {
-  const { show, handleShow } = useShow(false);
-  function handleClick() {
-    handleShow();
-  }
-  function handleSubmit(e) {
-    e.preventDefault();
-    console.log('submitted');
-  }
-  return (
-    <>
-      <Open title={title} hide={show} onClick={handleClick} />
-      <Add show={show} onSubmit={handleSubmit} onClick={handleClick} />
-    </>
-  );
-}
-
-function ShowEditAreas({ title, className, Area, EditArea }) {
-  const { show, handleShow } = useShow(false);
-  const { value, handleValue } = useInput(title);
-  function handleClick() {
-    handleShow();
-  }
-  function handleSubmit(e) {
-    e.preventDefault();
-    console.log('submitted');
-  }
-
-  return (
-    <>
-      <Area
-        className={className}
-        hide={show}
-        title={title}
-        onClick={handleClick}
-      />
-      <EditArea
-        show={show}
-        onSubmit={handleSubmit}
-        onChange={handleValue}
-        value={value}
-      />
-    </>
   );
 }
 
