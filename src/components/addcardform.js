@@ -7,7 +7,7 @@ function AddCardForm(props) {
   const { show, board } = props;
   return (
     <AddCardFormStyles className={show ? '' : 'hide'}>
-      <Form>
+      <Form onSubmit={props.onSubmit}>
         <section className="form form-group">
           <textarea placeholder="Enter title for card" rows="3" cols="33" />
         </section>

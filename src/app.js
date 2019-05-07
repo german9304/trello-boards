@@ -27,10 +27,14 @@ function ShowFormAreas({ board, title, Open, Add }) {
   function handleClick() {
     handleShow();
   }
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log('submitted');
+  }
   return (
     <>
       <Open title={title} hide={show} onClick={handleClick} />
-      <Add show={show} onClick={handleClick} />
+      <Add show={show} onSubmit={handleSubmit} onClick={handleClick} />
     </>
   );
 }
@@ -41,6 +45,10 @@ function ShowEditAreas({ title, className, Area, EditArea }) {
   function handleClick() {
     handleShow();
   }
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log('submitted');
+  }
 
   return (
     <>
@@ -50,7 +58,12 @@ function ShowEditAreas({ title, className, Area, EditArea }) {
         title={title}
         onClick={handleClick}
       />
-      <EditArea show={show} onChange={handleValue} value={value} />
+      <EditArea
+        show={show}
+        onSubmit={handleSubmit}
+        onChange={handleValue}
+        value={value}
+      />
     </>
   );
 }

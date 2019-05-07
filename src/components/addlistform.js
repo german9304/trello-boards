@@ -8,7 +8,7 @@ function AddListForm(props) {
     <AddListFormStyles
       className={`board board-form ${props.show ? '' : 'hide'}`}
     >
-      <Form>
+      <Form onSubmit={props.onSubmit}>
         <section className="form form-group">
           <input type="text" placeholder="Enter title for List" />
         </section>
