@@ -39,8 +39,14 @@ function Boards() {
     };
   }
 
-  const addList = value =>
-    dispatch({ type: 'ADD LIST', payload: createList(value) });
+  function addList(value) {
+    const disp = {
+      type: 'ADD_LIST',
+      payload: createList(value),
+    };
+    return dispatch(disp);
+  }
+
   return (
     <BoardsStyles id="boards">
       {state.boards.map(board => {
