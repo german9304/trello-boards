@@ -32,6 +32,17 @@ function useShow(initVal) {
   };
 }
 
+function useInput(initValue) {
+  const [value, setValue] = useState(initValue);
+  function handleValue(e) {
+    setValue(e.target.value);
+  }
+  return {
+    value,
+    handleValue,
+  };
+}
+
 function ShowFormAreas({ board, title, Open, Add }) {
   const { show, handleShow } = useShow(false);
   function handleClick() {
@@ -47,6 +58,7 @@ function ShowFormAreas({ board, title, Open, Add }) {
 
 function ShowEditAreas({ title, className, Area, EditArea }) {
   const { show, handleShow } = useShow(false);
+  const { value, handleValue } = useInput(title);
   function handleClick() {
     handleShow();
   }
@@ -59,7 +71,7 @@ function ShowEditAreas({ title, className, Area, EditArea }) {
         title={title}
         onClick={handleClick}
       />
-      <EditArea show={show} value={title} />
+      <EditArea show={show} onChange={handleValue} value={value} />
     </>
   );
 }

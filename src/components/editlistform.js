@@ -7,7 +7,7 @@ function EditListTitle(props) {
     <EditListTtitleStyles className={props.show ? '' : 'hide'}>
       <Form>
         <section className="form form-group">
-          <input type="text" value={props.value} />
+          <input type="text" onChange={props.onChange} value={props.value} />
         </section>
       </Form>
     </EditListTtitleStyles>
