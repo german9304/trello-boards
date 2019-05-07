@@ -14,7 +14,6 @@ import BoardStyles from './components/styles/BoardStyles';
 
 function Header({ hide, className, title, onClick }) {
   const cond = hide ? `${className} hide` : `${className}`;
-  console.log(cond);
   return (
     <header className={cond} onClick={onClick}>
       <h1>{title}</h1>
