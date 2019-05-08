@@ -39,10 +39,27 @@ function Boards() {
     };
   }
 
+  function createCard(cardName) {
+    return {
+      id: uuid(),
+      cardName,
+    };
+  }
   function addList(value) {
     const disp = {
       type: 'ADD_LIST',
       payload: createList(value),
+    };
+    return dispatch(disp);
+  }
+
+  function addCard(boardID, value) {
+    const disp = {
+      type: 'ADD_CARD',
+      payload: {
+        boardID,
+        card: createCard(value),
+      },
     };
     return dispatch(disp);
   }
@@ -75,6 +92,7 @@ function Boards() {
               title="Add a Card"
               Open={OpenCardForm}
               Add={AddCardForm}
+              dispatch={value => addCard(board.id, value)}
             />
           </BoardStyles>
         );

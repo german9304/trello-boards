@@ -1,32 +1,22 @@
 import React from 'react';
-import useShow from '../customhooks/useshow';
-import useInput from '../customhooks/useinput';
+import useAreas from '../customhooks/useareas';
 
 function ShowEditAreas({ title, dispatch, className, Area, EditArea }) {
-  const { show, handleShow } = useShow(false);
-  const { value, handleValue } = useInput(title);
-  function handleClick() {
-    handleShow();
-  }
-  function handleSubmit(e) {
-    e.preventDefault();
-    console.log(value);
-    // dispatch();
-  }
+  const areas = useAreas(false, title, dispatch);
 
   return (
     <>
       <Area
         className={className}
-        hide={show}
+        hide={areas.show}
         title={title}
-        onClick={handleClick}
+        onClick={areas.handleClick}
       />
       <EditArea
-        show={show}
-        onSubmit={handleSubmit}
-        onChange={handleValue}
-        value={value}
+        show={areas.show}
+        onSubmit={areas.handleSubmit}
+        onChange={areas.handleValue}
+        value={areas.value}
       />
     </>
   );

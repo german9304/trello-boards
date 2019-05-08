@@ -9,7 +9,6 @@ function useAreas(cond, title, dispatch) {
   }
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(value);
     dispatch(value);
   }
 
