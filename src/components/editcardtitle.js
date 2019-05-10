@@ -1,15 +1,18 @@
 import React from 'react';
 import Form from './form';
 import Button from './button';
+import EditCardTitleStyes from './styles/editCardTitleStyles';
 
-function EditCardTitle() {
+function EditCardTitle(props) {
   return (
-    <Form>
-      <section className="form form-group">
-        <textarea type="text" value="" />
-      </section>
-      <Button> {'save'}</Button>
-    </Form>
+    <EditCardTitleStyes className={props.show ? '' : 'hide'}>
+      <Form>
+        <section className="form form-group">
+          <textarea type="text" value={props.value} onChange={props.onChange} />
+        </section>
+        <Button> {'save'}</Button>
+      </Form>
+    </EditCardTitleStyes>
   );
 }
 

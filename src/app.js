@@ -10,10 +10,11 @@ import CardStyles from './components/styles/cardStyles';
 import EditListTitle from './components/editlistform';
 import ShowEditAreas from './components/showeditareas';
 import ShowFormAreas from './components/showformareas';
-// import EditCardTitle from './components/editcardtitle';
+import EditCardTitle from './components/editcardtitle';
 import BoardsStyles from './components/styles/BoardsStyles';
 import BoardStyles from './components/styles/BoardStyles';
 import listReducer from './reducers/listreducer';
+import Icon from './components/icon';
 
 const initState = {
   boards,
@@ -43,8 +44,25 @@ function Header({ hide, className, title, onClick }) {
   );
 }
 
+function CardEdit({ hide, className, title, onClick }) {
+  const cond = hide ? `${className} hide` : `${className}`;
+  return (
+    <section className="edit-section">
+      <section className="card-title">
+        <p className="title"> {title}</p>
+      </section>
+      <section className="edit-icon">
+        <span>
+          <i className="material-icons">edit</i>
+        </span>
+      </section>
+    </section>
+  );
+}
+
 function Boards() {
   const [state, dispatch] = useReducer(listReducer, initState);
+  const [cardTitle, setTitle] = useState(false);
 
   function addList(value) {
     const disp = {
@@ -93,8 +111,12 @@ function Boards() {
                 {board.cards.map(card => {
                   return (
                     <CardStyles className="card" key={card.id}>
-                      <Header className="cards_title" title={card.cardName} />
-                      {/* <EditCardTitle /> */}
+                      <ShowEditAreas
+                        className="cards_title"
+                        Area={CardEdit}
+                        title={card.cardName}
+                        EditArea={EditCardTitle}
+                      />
                     </CardStyles>
                   );
                 })}
