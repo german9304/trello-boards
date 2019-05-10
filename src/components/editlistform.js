@@ -5,9 +5,9 @@ import EditListTtitleStyles from './styles/EditListTitleStyles';
 function EditListTitle(props) {
   return (
     <EditListTtitleStyles className={props.show ? '' : 'hide'}>
-      <Form>
+      <Form onSubmit={props.onSubmit}>
         <section className="form form-group">
-          <input type="text" value={props.value} />
+          <input type="text" onChange={props.onChange} value={props.value} />
         </section>
       </Form>
     </EditListTtitleStyles>
