@@ -4,6 +4,11 @@ import useAreas from '../customhooks/useareas';
 function ShowEditAreas({ title, dispatch, className, Area, EditArea }) {
   const areas = useAreas(false, title, dispatch);
 
+  function handleSubmit(e) {
+    areas.handleSubmit(e);
+    areas.handleShow();
+  }
+
   return (
     <>
       <Area
@@ -14,7 +19,7 @@ function ShowEditAreas({ title, dispatch, className, Area, EditArea }) {
       />
       <EditArea
         show={areas.show}
-        onSubmit={areas.handleSubmit}
+        onSubmit={handleSubmit}
         onChange={areas.handleValue}
         value={areas.value}
       />

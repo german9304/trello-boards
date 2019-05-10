@@ -19,6 +19,21 @@ const initState = {
   boards,
 };
 
+function createList(title) {
+  return {
+    id: uuid(),
+    title,
+    cards: [],
+  };
+}
+
+function createCard(cardName) {
+  return {
+    id: uuid(),
+    cardName,
+  };
+}
+
 function Header({ hide, className, title, onClick }) {
   const cond = hide ? `${className} hide` : `${className}`;
   return (
@@ -31,20 +46,6 @@ function Header({ hide, className, title, onClick }) {
 function Boards() {
   const [state, dispatch] = useReducer(listReducer, initState);
 
-  function createList(title) {
-    return {
-      id: uuid(),
-      title,
-      cards: [],
-    };
-  }
-
-  function createCard(cardName) {
-    return {
-      id: uuid(),
-      cardName,
-    };
-  }
   function addList(value) {
     const disp = {
       type: 'ADD_LIST',
@@ -64,6 +65,17 @@ function Boards() {
     return dispatch(disp);
   }
 
+  function editTitle(boardID, value) {
+    const disp = {
+      type: 'EDIT_TITLE',
+      payload: {
+        boardID,
+        title: value,
+      },
+    };
+    dispatch(disp);
+  }
+
   return (
     <BoardsStyles id="boards">
       {state.boards.map(board => {
@@ -75,6 +87,7 @@ function Boards() {
                 Area={Header}
                 title={board.title}
                 EditArea={EditListTitle}
+                dispatch={value => editTitle(board.id, value)}
               />
               <section className="board-cards">
                 {board.cards.map(card => {
