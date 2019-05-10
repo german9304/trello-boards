@@ -19,6 +19,10 @@ const BoardsStyles = styled.section`
   .hide {
     display: none;
   }
+  overflow: auto;
+  > section {
+    flex: 0 0 auto;
+  }
 `;
 
 export default BoardsStyles;
