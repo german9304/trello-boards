@@ -2,7 +2,7 @@ import React from 'react';
 
 function Form(props) {
   return (
-    <form action="">
+    <form onSubmit={props.onSubmit}>
       {''}
       {props.children}
       {''}

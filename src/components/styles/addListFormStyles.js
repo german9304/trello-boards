@@ -7,6 +7,8 @@ const AddListFormStyles = styled.section`
   input {
     outline: none;
     border-radius: 3px;
+    padding: 6px;
+    font-size: 1rem;
     border: solid 2px #001f3f;
   }
   .form {
