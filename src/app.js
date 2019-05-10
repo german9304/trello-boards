@@ -64,6 +64,7 @@ function Boards() {
   const [state, dispatch] = useReducer(listReducer, initState);
   const [cardTitle, setTitle] = useState(false);
 
+  function handleCardTitle() {}
   function addList(value) {
     const disp = {
       type: 'ADD_LIST',
