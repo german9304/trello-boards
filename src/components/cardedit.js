@@ -1,9 +1,20 @@
 import React from 'react';
 
-function CardEdit({ hide, className, title, onClick }) {
+function CardEdit({
+  hide,
+  className,
+  title,
+  onClick,
+  onMouseLeave,
+  onMouseEnter,
+}) {
   const cond = hide ? `${className} hide` : `${className}`;
   return (
-    <section className={cond}>
+    <section
+      className={cond}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    >
       <section className="card-title">
         <p className="title"> {title}</p>
       </section>
