@@ -7,6 +7,7 @@ function CardEdit({
   onClick,
   onMouseLeave,
   onMouseEnter,
+  show,
 }) {
   const cond = hide ? `${className} hide` : `${className}`;
   return (
@@ -18,7 +19,10 @@ function CardEdit({
       <section className="card-title">
         <p className="title"> {title}</p>
       </section>
-      <section className="edit-icon" onClick={onClick}>
+      <section
+        className={show ? `edit-icon ` : `edit-icon hide`}
+        onClick={onClick}
+      >
         <span>
           <i className="material-icons">edit</i>
         </span>
