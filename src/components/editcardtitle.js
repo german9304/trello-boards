@@ -6,7 +6,7 @@ import EditCardTitleStyes from './styles/editCardTitleStyles';
 function EditCardTitle(props) {
   return (
     <EditCardTitleStyes className={props.show ? '' : 'hide'}>
-      <Form>
+      <Form onSubmit={props.onSubmit}>
         <section className="form form-group">
           <textarea type="text" value={props.value} onChange={props.onChange} />
         </section>

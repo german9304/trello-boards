@@ -45,9 +45,9 @@ function Header({ hide, className, title, onClick }) {
 
 function Boards() {
   const [state, dispatch] = useReducer(listReducer, initState);
-  const [cardTitle, setTitle] = useState(false);
+  const [showBlackBackground, setShowBlackBackground] = useState(false);
 
-  function handleCardTitle() {}
+  function handleCardTitle(value) {}
   function addList(value) {
     const disp = {
       type: 'ADD_LIST',
@@ -80,6 +80,11 @@ function Boards() {
 
   return (
     <BoardsStyles id="boards">
+      <section
+        className={
+          showBlackBackground ? `black-background` : `black-background hide`
+        }
+      />
       {state.boards.map(board => {
         return (
           <BoardStyles className="board boards-list" key={board.id}>
@@ -95,7 +100,10 @@ function Boards() {
                 {board.cards.map(card => {
                   return (
                     <CardStyles className="card" key={card.id}>
-                      <EditCardTitleBackground title={card.cardName} />
+                      <EditCardTitleBackground
+                        dispatch={handleCardTitle}
+                        title={card.cardName}
+                      />
                     </CardStyles>
                   );
                 })}

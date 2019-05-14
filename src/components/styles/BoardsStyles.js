@@ -23,6 +23,14 @@ const BoardsStyles = styled.section`
   > section {
     flex: 0 0 auto;
   }
+  .black-background {
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    right: 0;
+    left: 0;
+    background-color: rgba(0.1, 0.1, 0.1, 0.4);
+  }
 `;
 
 export default BoardsStyles;
