@@ -10,6 +10,7 @@ const EditCardTitleStyles = styled.section`
     font-weight: bolder;
     font-size: 0.9rem;
     padding: 3px 5px 3px 5px;
+    width: 100%;
   }
   background-color: ##11111132;
   button {
@@ -21,6 +22,7 @@ const EditCardTitleStyles = styled.section`
   }
   .areabtn {
     margin: 10px 0 0 0;
+    cursor: pointer;
   }
 `;
 

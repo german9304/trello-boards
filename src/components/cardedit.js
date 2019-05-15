@@ -12,7 +12,7 @@ function CardEdit({
   const cond = hide ? `${className} hide` : `${className}`;
   return (
     <section
-      className={cond}
+      className={className}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >

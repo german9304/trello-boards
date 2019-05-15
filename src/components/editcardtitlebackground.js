@@ -6,6 +6,7 @@ import useAreas from '../customhooks/useareas';
 
 function EditCardTitleBackground({ title, dispatch, handleBackground }) {
   const areas = useAreas(false, title, dispatch);
+  const [styles, setSyles] = useState({});
   const [showIcon, setShowIcon] = useState(false);
 
   function handleSubmit(e) {
@@ -16,6 +17,16 @@ function EditCardTitleBackground({ title, dispatch, handleBackground }) {
   }
 
   function handleClick(e) {
+    const { target } = e;
+    const clientRect = target.getBoundingClientRect();
+    const elStyles = {
+      top: `${clientRect.top}px`,
+      bottom: `${clientRect.bottom}px`,
+      width: '230px',
+      heigh: '90px',
+    };
+    setSyles(elStyles);
+    console.log(target.getBoundingClientRect());
     areas.handleClick(e);
     handleBackground();
   }
@@ -43,6 +54,7 @@ function EditCardTitleBackground({ title, dispatch, handleBackground }) {
         onSubmit={handleSubmit}
         onChange={areas.handleValue}
         value={areas.value}
+        styles={styles}
       />
     </EditCardTitleBackgroundStyles>
   );
