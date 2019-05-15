@@ -48,6 +48,9 @@ function Boards() {
   const [showBlackBackground, setShowBlackBackground] = useState(false);
 
   function handleCardTitle(value) {}
+  function handleBackground() {
+    setShowBlackBackground(prev => !prev);
+  }
   function addList(value) {
     const disp = {
       type: 'ADD_LIST',
@@ -103,6 +106,7 @@ function Boards() {
                       <EditCardTitleBackground
                         dispatch={handleCardTitle}
                         title={card.cardName}
+                        handleBackground={handleBackground}
                       />
                     </CardStyles>
                   );

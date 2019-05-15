@@ -5,6 +5,7 @@ const BoardStyles = styled.section`
   .board-list_title {
     border: solid 2px #ffffff;
   }
+  border-radius: 3px;
   .board-list_title h1 {
     font-family: 'Bitter', serif;
     font-size: 0.9rem;

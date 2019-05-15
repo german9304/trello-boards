@@ -4,13 +4,20 @@ import EditCardTitle from './editcardtitle';
 import EditCardTitleBackgroundStyles from './styles/editcardtitlebckndStyles';
 import useAreas from '../customhooks/useareas';
 
-function EditCardTitleBackground({ title, dispatch }) {
+function EditCardTitleBackground({ title, dispatch, handleBackground }) {
   const areas = useAreas(false, title, dispatch);
   const [showIcon, setShowIcon] = useState(false);
 
   function handleSubmit(e) {
-    areas.handleSubmit(e);
+    // areas.handleSubmit(e);
+    e.preventDefault();
+    handleBackground();
     areas.handleShow();
+  }
+
+  function handleClick(e) {
+    areas.handleClick(e);
+    handleBackground();
   }
 
   function handleMouseEnter() {
@@ -26,7 +33,7 @@ function EditCardTitleBackground({ title, dispatch }) {
         className="edit-section"
         hide={areas.show}
         title={title}
-        onClick={areas.handleClick}
+        onClick={handleClick}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         show={showIcon}
