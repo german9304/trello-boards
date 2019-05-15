@@ -10,8 +10,7 @@ function EditCardTitleBackground({ title, dispatch, handleBackground }) {
   const [showIcon, setShowIcon] = useState(false);
 
   function handleSubmit(e) {
-    // areas.handleSubmit(e);
-    e.preventDefault();
+    areas.handleSubmit(e);
     handleBackground();
     areas.handleShow();
   }
