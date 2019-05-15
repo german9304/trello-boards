@@ -18,9 +18,10 @@ const EditCardTitleStyles = styled.section`
     color: #ffffff;
     border: none;
     background: #2ecc40;
-    padding: 5px 18px 5px 18px;
+    padding: 5px 20px 5px 20px;
     font-size: 0.9rem;
     cursor: pointer;
+    outline: none;
   }
   .areabtn {
     margin: 10px 0 0 0;
