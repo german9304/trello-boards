@@ -25,7 +25,6 @@ function EditCardTitleBackground({ title, dispatch, handleBackground }) {
       heigh: '90px',
     };
     setSyles(elStyles);
-    console.log(target.getBoundingClientRect());
     areas.handleClick(e);
     handleBackground();
   }

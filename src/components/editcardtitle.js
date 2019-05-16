@@ -4,7 +4,6 @@ import Button from './button';
 import EditCardTitleStyes from './styles/editCardTitleStyles';
 
 function EditCardTitle(props) {
-  console.log(props.styles);
   return (
     <EditCardTitleStyes
       className={props.show ? '' : 'hide'}

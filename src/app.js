@@ -47,7 +47,19 @@ function Boards() {
   const [state, dispatch] = useReducer(listReducer, initState);
   const [showBlackBackground, setShowBlackBackground] = useState(false);
 
-  function handleCardTitle(value) {}
+  function handleCardTitle(cardID, boardID) {
+    return value => {
+      const actionCreator = {
+        type: 'EDIT_CARD_TITLE',
+        payload: {
+          value,
+          cardID,
+          boardID,
+        },
+      };
+      dispatch(actionCreator);
+    };
+  }
   function handleBackground() {
     setShowBlackBackground(prev => !prev);
   }
@@ -104,7 +116,7 @@ function Boards() {
                   return (
                     <CardStyles className="card" key={card.id}>
                       <EditCardTitleBackground
-                        dispatch={handleCardTitle}
+                        dispatch={handleCardTitle(card.id, board.id)}
                         title={card.cardName}
                         handleBackground={handleBackground}
                       />

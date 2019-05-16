@@ -1,3 +1,12 @@
+function editCards(cards, value, id) {
+  return cards.map(card => {
+    if (card.id === id) {
+      return { ...card, cardName: value };
+    }
+    return card;
+  });
+}
+
 function listReducer(state, action) {
   const { payload } = action;
   switch (action.type) {
@@ -12,6 +21,16 @@ function listReducer(state, action) {
         return board;
       });
       return { boards: newBoard };
+    case 'EDIT_CARD_TITLE':
+      const newCardTitle = state.boards.map(board => {
+        if (payload.boardID === board.id) {
+          const { cards } = board;
+          const editCard = editCards(cards, payload.value, payload.cardID);
+          return { ...board, cards: editCard };
+        }
+        return board;
+      });
+      return { boards: newCardTitle };
     case 'EDIT_TITLE':
       const boardTitle = state.boards.map(board => {
         if (board.id === payload.boardID) {
@@ -19,7 +38,6 @@ function listReducer(state, action) {
         }
         return board;
       });
-      console.log(boardTitle);
       return { boards: boardTitle };
     default:
       return state;
