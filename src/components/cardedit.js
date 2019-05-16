@@ -9,7 +9,6 @@ function CardEdit({
   onMouseEnter,
   show,
 }) {
-  const cond = hide ? `${className} hide` : `${className}`;
   return (
     <section
       className={className}
