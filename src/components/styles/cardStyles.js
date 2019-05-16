@@ -23,8 +23,9 @@ const CardStyles = styled.section`
   // .edit-section > section {
   //   border: solid 1px red;
   // }
-
+  .card-title {}
   .edit-section span {
+    // border: solid 1px black;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -35,9 +36,18 @@ const CardStyles = styled.section`
   }
   .edit-icon {
     cursor: pointer;
+    margin: 0 5px 0 0;
     flex: 1;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .edit-icon:hover{
+    background-color: rgba(0.1, 0.1, 0.1, 0.1);
   }
   .material-icons{
+    font-size: .8rem;
     color: rgba(0.1, 0.1, 0.1, 0.5);
   }
 `;

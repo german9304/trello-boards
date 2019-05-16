@@ -10,11 +10,10 @@ import CardStyles from './components/styles/cardStyles';
 import EditListTitle from './components/editlistform';
 import ShowEditAreas from './components/showeditareas';
 import ShowFormAreas from './components/showformareas';
-import EditCardTitle from './components/editcardtitle';
 import BoardsStyles from './components/styles/BoardsStyles';
 import BoardStyles from './components/styles/BoardStyles';
 import listReducer from './reducers/listreducer';
-import Icon from './components/icon';
+import EditCardTitleBackground from './components/editcardtitlebackground';
 
 const initState = {
   boards,
@@ -44,26 +43,26 @@ function Header({ hide, className, title, onClick }) {
   );
 }
 
-function CardEdit({ hide, className, title, onClick }) {
-  const cond = hide ? `${className} hide` : `${className}`;
-  return (
-    <section className="edit-section">
-      <section className="card-title">
-        <p className="title"> {title}</p>
-      </section>
-      <section className="edit-icon">
-        <span>
-          <i className="material-icons">edit</i>
-        </span>
-      </section>
-    </section>
-  );
-}
-
 function Boards() {
   const [state, dispatch] = useReducer(listReducer, initState);
-  const [cardTitle, setTitle] = useState(false);
+  const [showBlackBackground, setShowBlackBackground] = useState(false);
 
+  function handleCardTitle(cardID, boardID) {
+    return value => {
+      const actionCreator = {
+        type: 'EDIT_CARD_TITLE',
+        payload: {
+          value,
+          cardID,
+          boardID,
+        },
+      };
+      dispatch(actionCreator);
+    };
+  }
+  function handleBackground() {
+    setShowBlackBackground(prev => !prev);
+  }
   function addList(value) {
     const disp = {
       type: 'ADD_LIST',
@@ -96,6 +95,11 @@ function Boards() {
 
   return (
     <BoardsStyles id="boards">
+      <section
+        className={
+          showBlackBackground ? `black-background` : `black-background hide`
+        }
+      />
       {state.boards.map(board => {
         return (
           <BoardStyles className="board boards-list" key={board.id}>
@@ -111,11 +115,10 @@ function Boards() {
                 {board.cards.map(card => {
                   return (
                     <CardStyles className="card" key={card.id}>
-                      <ShowEditAreas
-                        className="cards_title"
-                        Area={CardEdit}
+                      <EditCardTitleBackground
+                        dispatch={handleCardTitle(card.id, board.id)}
                         title={card.cardName}
-                        EditArea={EditCardTitle}
+                        handleBackground={handleBackground}
                       />
                     </CardStyles>
                   );
