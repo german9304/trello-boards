@@ -1,4 +1,11 @@
-type User {
+type Board {
   id: ID! @id
-  name: String!
+  title: String!
+  cards: [Card!]!
+}
+
+type Card {
+  id: ID! @id
+  name: String! 
+  board: Board! @relation(link: INLINE, onDelete: CASCADE)
 }
