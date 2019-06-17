@@ -3,6 +3,7 @@ const boardsRouter = require('../controllers/boardController');
 const router = express.Router();
 
 router.get('/boards/', boardsRouter.getBoards);
+router.get('/board', boardsRouter.getBoard);
 router.post('/board/', boardsRouter.createBoard);
 
 module.exports = router;
