@@ -9,6 +9,9 @@ exports.getBoards = async (req, res) => {
   res.json(boards);
 };
 
+/**
+ * Creates a board
+ */
 exports.createBoard = async (req, res) => {
   const { title } = req.body;
   const createdBoard = await prisma.createBoard({
