@@ -11,6 +11,7 @@ import BoardsStyles from './components/styles/BoardsStyles';
 import BoardStyles from './components/styles/BoardStyles';
 import listReducer from './reducers/listreducer';
 import EditCardTitleBackground from './components/editcardtitlebackground';
+import { createList } from './actions/actions';
 import boards from './data';
 import uuid from 'uuid/v1';
 import './styles.css';
@@ -19,13 +20,13 @@ const initState = {
   boards,
 };
 
-function createList(title) {
-  return {
-    id: uuid(),
-    title,
-    cards: [],
-  };
-}
+// function createList(title) {
+//   return {
+//     id: uuid(),
+//     title,
+//     cards: [],
+//   };
+// }
 
 function createCard(cardName) {
   return {
@@ -83,12 +84,19 @@ function Boards() {
     setShowBlackBackground(prev => !prev);
   }
   function addList(value) {
-    const disp = {
-      type: 'ADD_LIST',
-      payload: createList(value),
-    };
-    return dispatch(disp);
+    fetch('/api/board/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ title: value }),
+    })
+      .then(res => res.json())
+      .then(d => console.log(d));
+
+    return dispatch(createList(uuid(), value));
   }
+  // const addList = value => dispatch(createList(uuid(), value));
 
   function addCard(boardID, value) {
     const disp = {
@@ -136,7 +144,7 @@ function Boards() {
                     <CardStyles className="card" key={card.id}>
                       <EditCardTitleBackground
                         dispatch={handleCardTitle(card.id, board.id)}
-                        title={card.cardName}
+                        title={card.name}
                         handleBackground={handleBackground}
                       />
                     </CardStyles>

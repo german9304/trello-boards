@@ -14,13 +14,33 @@ export function editCardTitle(value, cardID, boardID) {
   };
 }
 
-export function addList(id, title) {
+export function createCard(id, name) {
+  return {
+    type: ADD_CARD,
+    payload: {
+      id,
+      name,
+    },
+  };
+}
+
+export function createList(id, title) {
   return {
     type: ADD_LIST,
     payload: {
       id,
       title,
       cards: [],
+    },
+  };
+}
+
+export function editTitle(boardID, title) {
+  return {
+    type: EDIT_TITLE,
+    payload: {
+      boardID,
+      title,
     },
   };
 }
