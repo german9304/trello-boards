@@ -1,7 +1,4 @@
-import React, { useState, useReducer } from 'react';
-import boards from './data';
-import uuid from 'uuid/v1';
-import './styles.css';
+import React, { useState, useReducer, useEffect } from 'react';
 import AddCardForm from './components/addcardform';
 import AddListForm from './components/addlistform';
 import OpenListForm from './components/openlistform';
@@ -14,6 +11,9 @@ import BoardsStyles from './components/styles/BoardsStyles';
 import BoardStyles from './components/styles/BoardStyles';
 import listReducer from './reducers/listreducer';
 import EditCardTitleBackground from './components/editcardtitlebackground';
+import boards from './data';
+import uuid from 'uuid/v1';
+import './styles.css';
 
 const initState = {
   boards,
@@ -46,6 +46,24 @@ function Header({ hide, className, title, onClick }) {
 function Boards() {
   const [state, dispatch] = useReducer(listReducer, initState);
   const [showBlackBackground, setShowBlackBackground] = useState(false);
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const url = '/api/boards/';
+    async function fetchData() {
+      const data = await fetch(url);
+      const jsonData = await data.json();
+      return jsonData;
+    }
+
+    function getData(data) {
+      setData(data);
+    }
+
+    fetchData()
+      .then(getData)
+      .catch(err => Error(err));
+  }, []);
 
   function handleCardTitle(cardID, boardID) {
     return value => {
@@ -60,6 +78,7 @@ function Boards() {
       dispatch(actionCreator);
     };
   }
+
   function handleBackground() {
     setShowBlackBackground(prev => !prev);
   }

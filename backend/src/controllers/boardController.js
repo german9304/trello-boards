@@ -4,8 +4,17 @@ const { prisma } = require('../generated');
  * returns boards list
  */
 exports.getBoards = async (req, res) => {
-  const boards = await prisma.boards();
-  console.log(boards);
+  const fragment = `
+    fragment BoardsWithCards on Board {
+      id
+      title
+      cards {
+        id
+        name
+      }
+    }
+  `;
+  const boards = await prisma.boards().$fragment(fragment);
   res.json(boards);
 };
 
