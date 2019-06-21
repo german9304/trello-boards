@@ -14,7 +14,7 @@ function errorHanlder(func) {
 }
 
 router.get('/boards/', errorHanlder(boardsRouter.getBoards));
-router.get('/board', errorHanlder(boardsRouter.getBoard));
+router.get('/board/', errorHanlder(boardsRouter.getBoard));
 router.post('/board/', errorHanlder(boardsRouter.createBoard));
 
 router.post('/card/', errorHanlder(cardsRouter.createCard));

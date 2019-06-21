@@ -1,5 +1,13 @@
-async function post(url, options) {
-  const data = await fetch(url, {});
+async function post(url, bodyData) {
+  const data = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(bodyData),
+  });
+  const jsonRes = await data.json();
+  return jsonRes;
 }
 
 async function get(url) {

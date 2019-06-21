@@ -27,21 +27,6 @@ const initState = {
   boards: [],
 };
 
-// function createList(title) {
-//   return {
-//     id: uuid(),
-//     title,
-//     cards: [],
-//   };
-// }
-
-// function createCard(cardName) {
-//   return {
-//     id: uuid(),
-//     cardName,
-//   };
-// }
-
 function Header({ hide, className, title, onClick }) {
   const cond = hide ? `${className} hide` : `${className}`;
   return (
@@ -54,14 +39,11 @@ function Header({ hide, className, title, onClick }) {
 function Boards() {
   const [state, dispatch] = useReducer(listReducer, initState);
   const [showBlackBackground, setShowBlackBackground] = useState(false);
-  // const [data, setData] = useState([]);
 
   useEffect(() => {
-    const fetchData = get('/api/boards/');
-    fetchData
+    get('/api/boards/')
       .then(res => {
-        console.log(setBoards({ boards: res }));
-        dispatch(setBoards( res ));
+        dispatch(setBoards(res));
       })
       .catch(err => console.log(err));
   }, []);
@@ -75,18 +57,14 @@ function Boards() {
   function handleBackground() {
     setShowBlackBackground(prev => !prev);
   }
-  function addList(value) {
-    // fetch('/api/board/', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({ title: value }),
-    // })
-    //   .then(res => res.json())
-    //   .then(d => console.log(d));
-
-    return dispatch(createList(uuid(), value));
+  function addList(title) {
+    post('/api/board/', {
+      title,
+    })
+      .then(({ board }) => {
+        dispatch(createList(board.id, board.title));
+      })
+      .catch(err => console.error(err));
   }
   // const addList = value => dispatch(createList(uuid(), value));
 
