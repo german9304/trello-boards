@@ -7,11 +7,11 @@ const BOARDS = [
     cards: [
       {
         id: uuid(),
-        cardName: 'running',
+        name: 'running',
       },
       {
         id: uuid(),
-        cardName: 'card2',
+        name: 'card2',
       },
     ],
   },
@@ -26,11 +26,11 @@ const BOARDS = [
     cards: [
       {
         id: uuid(),
-        cardName: 'card2',
+        name: 'card2',
       },
       {
         id: uuid(),
-        cardName: 'card2',
+        name: 'card2',
       },
     ],
   },

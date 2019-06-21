@@ -1,7 +1,9 @@
+import { SET_BOARDS } from '../actions/actions';
+
 function editCards(cards, value, id) {
   return cards.map(card => {
     if (card.id === id) {
-      return { ...card, cardName: value };
+      return { ...card, name: value };
     }
     return card;
   });
@@ -39,6 +41,8 @@ function listReducer(state, action) {
         return board;
       });
       return { boards: boardTitle };
+    case SET_BOARDS:
+      return { boards: payload.boards };
     default:
       return state;
   }

@@ -1,7 +1,4 @@
-import React, { useState, useReducer } from 'react';
-import boards from './data';
-import uuid from 'uuid/v1';
-import './styles.css';
+import React, { useState, useReducer, useEffect } from 'react';
 import AddCardForm from './components/addcardform';
 import AddListForm from './components/addlistform';
 import OpenListForm from './components/openlistform';
@@ -14,25 +11,21 @@ import BoardsStyles from './components/styles/BoardsStyles';
 import BoardStyles from './components/styles/BoardStyles';
 import listReducer from './reducers/listreducer';
 import EditCardTitleBackground from './components/editcardtitlebackground';
+// import boards from './data';
+import uuid from 'uuid/v1';
+import './styles.css';
+import {
+  createCard,
+  editTitle,
+  createList,
+  setBoards,
+  editCardTitle,
+} from './actions/actions';
+import { get, post } from './helpers/api';
 
 const initState = {
-  boards,
+  boards: [],
 };
-
-function createList(title) {
-  return {
-    id: uuid(),
-    title,
-    cards: [],
-  };
-}
-
-function createCard(cardName) {
-  return {
-    id: uuid(),
-    cardName,
-  };
-}
 
 function Header({ hide, className, title, onClick }) {
   const cond = hide ? `${className} hide` : `${className}`;
@@ -47,50 +40,40 @@ function Boards() {
   const [state, dispatch] = useReducer(listReducer, initState);
   const [showBlackBackground, setShowBlackBackground] = useState(false);
 
+  useEffect(() => {
+    get('/api/boards/')
+      .then(res => {
+        dispatch(setBoards(res));
+      })
+      .catch(err => console.log(err));
+  }, []);
+
   function handleCardTitle(cardID, boardID) {
     return value => {
-      const actionCreator = {
-        type: 'EDIT_CARD_TITLE',
-        payload: {
-          value,
-          cardID,
-          boardID,
-        },
-      };
-      dispatch(actionCreator);
+      dispatch(editCardTitle(value, cardID, boardID));
     };
   }
+
   function handleBackground() {
     setShowBlackBackground(prev => !prev);
   }
-  function addList(value) {
-    const disp = {
-      type: 'ADD_LIST',
-      payload: createList(value),
-    };
-    return dispatch(disp);
+  function addList(title) {
+    post('/api/board/', {
+      title,
+    })
+      .then(({ board }) => {
+        dispatch(createList(board.id, board.title));
+      })
+      .catch(err => console.error(err));
+  }
+  // const addList = value => dispatch(createList(uuid(), value));
+
+  function addCard(boardID, name) {
+    return dispatch(createCard(boardID, { id: uuid(), name }));
   }
 
-  function addCard(boardID, value) {
-    const disp = {
-      type: 'ADD_CARD',
-      payload: {
-        boardID,
-        card: createCard(value),
-      },
-    };
-    return dispatch(disp);
-  }
-
-  function editTitle(boardID, value) {
-    const disp = {
-      type: 'EDIT_TITLE',
-      payload: {
-        boardID,
-        title: value,
-      },
-    };
-    dispatch(disp);
+  function updateTitle(boardID, title) {
+    dispatch(editTitle(boardID, title));
   }
 
   return (
@@ -109,7 +92,7 @@ function Boards() {
                 Area={Header}
                 title={board.title}
                 EditArea={EditListTitle}
-                dispatch={value => editTitle(board.id, value)}
+                dispatch={value => updateTitle(board.id, value)}
               />
               <section className="board-cards">
                 {board.cards.map(card => {
@@ -117,7 +100,7 @@ function Boards() {
                     <CardStyles className="card" key={card.id}>
                       <EditCardTitleBackground
                         dispatch={handleCardTitle(card.id, board.id)}
-                        title={card.cardName}
+                        title={card.name}
                         handleBackground={handleBackground}
                       />
                     </CardStyles>
