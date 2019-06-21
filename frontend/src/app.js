@@ -11,13 +11,20 @@ import BoardsStyles from './components/styles/BoardsStyles';
 import BoardStyles from './components/styles/BoardStyles';
 import listReducer from './reducers/listreducer';
 import EditCardTitleBackground from './components/editcardtitlebackground';
-import { createList } from './actions/actions';
-import boards from './data';
+// import boards from './data';
 import uuid from 'uuid/v1';
 import './styles.css';
+import {
+  createCard,
+  editTitle,
+  createList,
+  setBoards,
+  editCardTitle,
+} from './actions/actions';
+import { get, post } from './helpers/api';
 
 const initState = {
-  boards,
+  boards: [],
 };
 
 // function createList(title) {
@@ -28,12 +35,12 @@ const initState = {
 //   };
 // }
 
-function createCard(cardName) {
-  return {
-    id: uuid(),
-    cardName,
-  };
-}
+// function createCard(cardName) {
+//   return {
+//     id: uuid(),
+//     cardName,
+//   };
+// }
 
 function Header({ hide, className, title, onClick }) {
   const cond = hide ? `${className} hide` : `${className}`;
@@ -47,36 +54,21 @@ function Header({ hide, className, title, onClick }) {
 function Boards() {
   const [state, dispatch] = useReducer(listReducer, initState);
   const [showBlackBackground, setShowBlackBackground] = useState(false);
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
 
   useEffect(() => {
-    const url = '/api/boards/';
-    async function fetchData() {
-      const data = await fetch(url);
-      const jsonData = await data.json();
-      return jsonData;
-    }
-
-    function getData(data) {
-      setData(data);
-    }
-
-    fetchData()
-      .then(getData)
-      .catch(err => Error(err));
+    const fetchData = get('/api/boards/');
+    fetchData
+      .then(res => {
+        console.log(setBoards({ boards: res }));
+        dispatch(setBoards( res ));
+      })
+      .catch(err => console.log(err));
   }, []);
 
   function handleCardTitle(cardID, boardID) {
     return value => {
-      const actionCreator = {
-        type: 'EDIT_CARD_TITLE',
-        payload: {
-          value,
-          cardID,
-          boardID,
-        },
-      };
-      dispatch(actionCreator);
+      dispatch(editCardTitle(value, cardID, boardID));
     };
   }
 
@@ -84,40 +76,26 @@ function Boards() {
     setShowBlackBackground(prev => !prev);
   }
   function addList(value) {
-    fetch('/api/board/', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ title: value }),
-    })
-      .then(res => res.json())
-      .then(d => console.log(d));
+    // fetch('/api/board/', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({ title: value }),
+    // })
+    //   .then(res => res.json())
+    //   .then(d => console.log(d));
 
     return dispatch(createList(uuid(), value));
   }
   // const addList = value => dispatch(createList(uuid(), value));
 
-  function addCard(boardID, value) {
-    const disp = {
-      type: 'ADD_CARD',
-      payload: {
-        boardID,
-        card: createCard(value),
-      },
-    };
-    return dispatch(disp);
+  function addCard(boardID, name) {
+    return dispatch(createCard(boardID, { id: uuid(), name }));
   }
 
-  function editTitle(boardID, value) {
-    const disp = {
-      type: 'EDIT_TITLE',
-      payload: {
-        boardID,
-        title: value,
-      },
-    };
-    dispatch(disp);
+  function updateTitle(boardID, title) {
+    dispatch(editTitle(boardID, title));
   }
 
   return (
@@ -136,7 +114,7 @@ function Boards() {
                 Area={Header}
                 title={board.title}
                 EditArea={EditListTitle}
-                dispatch={value => editTitle(board.id, value)}
+                dispatch={value => updateTitle(board.id, value)}
               />
               <section className="board-cards">
                 {board.cards.map(card => {

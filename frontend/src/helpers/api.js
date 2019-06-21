@@ -4,6 +4,8 @@ async function post(url, options) {
 
 async function get(url) {
   const data = await fetch(url);
+  const jsonRes = await data.json();
+  return jsonRes;
 }
 
 async function put(url) {

@@ -2,6 +2,7 @@ export const EDIT_CARD_TITLE = 'EDIT_CARD_TITLE';
 export const ADD_LIST = 'ADD_LIST';
 export const ADD_CARD = 'ADD_CARD';
 export const EDIT_TITLE = 'EDIT_TITLE';
+export const SET_BOARDS = 'SET_BOARDS';
 
 export function editCardTitle(value, cardID, boardID) {
   return {
@@ -14,12 +15,12 @@ export function editCardTitle(value, cardID, boardID) {
   };
 }
 
-export function createCard(id, name) {
+export function createCard(boardID, card) {
   return {
     type: ADD_CARD,
     payload: {
-      id,
-      name,
+      boardID,
+      card,
     },
   };
 }
@@ -41,6 +42,15 @@ export function editTitle(boardID, title) {
     payload: {
       boardID,
       title,
+    },
+  };
+}
+
+export function setBoards(boards) {
+  return {
+    type: SET_BOARDS,
+    payload: {
+      boards,
     },
   };
 }
